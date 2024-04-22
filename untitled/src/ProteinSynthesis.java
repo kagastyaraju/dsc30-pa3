@@ -12,9 +12,8 @@
  */
 class ProteinSynthesis {
     public CharQueue transcribeDNA(String dna) {
-        // TODO
-        if (dna.length() % 3 != 0);
-        {
+        // checks if length is divisble by 3
+        if (dna.length() % 3 != 0) {
             throw new IllegalArgumentException();
         }
         CharQueue rna = new CharQueue();
@@ -27,12 +26,43 @@ class ProteinSynthesis {
             }
         }
         return rna;
-
     }
 
     public CharQueue translateRNA(CharQueue rna) {
-        // TODO
-        return null;
-    }
+        //initates necessary variables for protein transcription
+        CharQueue protein = new CharQueue();
+        int codonLength = 0;
+        char[] codon = new char[3];
+        boolean startCodonFound = false;
 
+        while (!rna.isEmpty()) {
+            codon[codonLength++] = rna.dequeue();
+
+            if (codonLength == 3) {
+                String currentCodon = new String(codon);
+                codonLength = 0;
+
+                if (currentCodon.equals("AUG")) {
+                    startCodonFound = true;
+                }
+
+                // looks for start codons in code
+
+                if (startCodonFound) {
+                    if (currentCodon.equals("UAA") || currentCodon.equals("UAG") || currentCodon.equals("UGA")) {
+                        protein.enqueue('*');
+                        break;
+                    } else {
+                        char aminoAcid = CodonMap.getAminoAcid(currentCodon);
+                        protein.enqueue(aminoAcid);
+                    }
+                }
+            }
+        }
+        if (!startCodonFound) {
+            return new CharQueue();
+        }
+        return protein;
+    }
 }
+

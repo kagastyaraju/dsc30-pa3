@@ -31,20 +31,20 @@ public class CharQueue {
             throw new IllegalArgumentException();
 
         }
-        circularArray = new char[capacity];
-        front = 0;
-        rear = 0;
-        size = 0;
+        this.circularArray = new char[capacity];
+        this.front = 0;
+        this.rear = 0;
+        this.size = 0;
+        this.length = capacity;
 
     }
 
     public boolean isEmpty() {
-        // TODO
+        // returns boolean value based on size
         return size == 0;
     }
 
     public int size() {
-        // TODO
         return size;
     }
 
@@ -55,17 +55,26 @@ public class CharQueue {
     }
 
     public void enqueue(char elem) {
-        if (size == circularArray.length) {
-            double_capacity();
+        if (size == length) {
+            char[] newArray = new char[length * 2];
+            for (int i = 0; i < size; i++) {
+                newArray[i] = circularArray[(front + i) % length];
+            }
+
+            length = length * 2;
+            circularArray = newArray;
+            front = 0;
+            rear = size;
         }
+
+
         circularArray[rear] = elem;
-        rear = (rear + 1) % circularArray.length;
+        rear = (rear + 1) % length;
         size++;
     }
 
 
     public char peek() {
-        // TODO
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
@@ -74,25 +83,13 @@ public class CharQueue {
     }
 
     public char dequeue() {
-        // TODO
-        return 0;
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
         char elem = circularArray[front];
-        front = (front + 1) % circularArray.length;
+        front = (front + 1) % length;
         size--;
         return elem;
 
     }
-    private void double_capacity() {
-        char[] newArray = new char[circularArray.length * 2];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = circularArray[(front + i) % circularArray.length];
-        }
-        circularArray = newArray;
-        front = 0;
-        rear = size;
-    }
-
 }
