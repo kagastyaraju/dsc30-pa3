@@ -21,8 +21,10 @@ public class CharQueue {
 
     private int size;
 
+    private static final int DEFAULT_CAPACITY = 5;
+
     public CharQueue() {
-        this(5);
+        this(DEFAULT_CAPACITY);
     }
 
     public CharQueue(int capacity) {
@@ -45,16 +47,19 @@ public class CharQueue {
     }
 
     public int size() {
+        // returns size
         return size;
     }
 
     public void clear() {
+        // clears the Queue by making front rear and size 0
         front = 0;
         rear = 0;
         size = 0;
     }
 
     public void enqueue(char elem) {
+        // enqueues a new character, doubles the capacity of circular array if size reaches length
         if (size == length) {
             char[] newArray = new char[length * 2];
             for (int i = 0; i < size; i++) {
@@ -75,6 +80,7 @@ public class CharQueue {
 
 
     public char peek() {
+        // returns front of array
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
@@ -83,6 +89,7 @@ public class CharQueue {
     }
 
     public char dequeue() {
+        // removes element from the front and returns it
         if (isEmpty()) {
             throw new NoSuchElementException();
         }

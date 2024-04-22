@@ -47,7 +47,6 @@ class ProteinSynthesisTest {
         ProteinSynthesis proteinSynthesis = new ProteinSynthesis();
         CharQueue protein = proteinSynthesis.translateRNA(rna);
 
-        // Test assertions
         assertNotNull(protein);
         assertFalse(protein.isEmpty());
         StringBuilder proteinSequence = new StringBuilder();

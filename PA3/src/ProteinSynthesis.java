@@ -3,7 +3,6 @@
     PID:  TODO
  */
 
-
 /**
  * implementation of ProteinSynthesis Class
  *
@@ -11,9 +10,10 @@
  * @since April 20th 2024
  */
 class ProteinSynthesis {
+    private static final int CODON_LENGTH = 3;
     public CharQueue transcribeDNA(String dna) {
         // checks if length is divisble by 3
-        if (dna.length() % 3 != 0) {
+        if (dna.length() % CODON_LENGTH != 0) {
             throw new IllegalArgumentException();
         }
         CharQueue rna = new CharQueue();
@@ -29,16 +29,16 @@ class ProteinSynthesis {
     }
 
     public CharQueue translateRNA(CharQueue rna) {
-        //initates necessary variables for protein transcription
+        //initiates necessary variables for protein transcription
         CharQueue protein = new CharQueue();
         int codonLength = 0;
-        char[] codon = new char[3];
+        char[] codon = new char[CODON_LENGTH];
         boolean startCodonFound = false;
 
         while (!rna.isEmpty()) {
             codon[codonLength++] = rna.dequeue();
 
-            if (codonLength == 3) {
+            if (codonLength == CODON_LENGTH) {
                 String currentCodon = new String(codon);
                 codonLength = 0;
 
@@ -49,7 +49,8 @@ class ProteinSynthesis {
                 // looks for start codons in code
 
                 if (startCodonFound) {
-                    if (currentCodon.equals("UAA") || currentCodon.equals("UAG") || currentCodon.equals("UGA")) {
+                    if (currentCodon.equals("UAA") || currentCodon.equals("UAG") ||
+                            currentCodon.equals("UGA")) {
                         protein.enqueue('*');
                         break;
                     } else {
