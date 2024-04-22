@@ -11,8 +11,13 @@
  */
 class ProteinSynthesis {
     private static final int CODON_LENGTH = 3;
+
+    /**
+     * takes in a string dna and returns transcribed rna by replacing Ts with Us
+     * @param dna string dna sequence
+     * @return rna stored in charqueue
+     * */
     public CharQueue transcribeDNA(String dna) {
-        // checks if length is divisble by 3
         if (dna.length() % CODON_LENGTH != 0) {
             throw new IllegalArgumentException();
         }
@@ -28,8 +33,15 @@ class ProteinSynthesis {
         return rna;
     }
 
+
+    /**
+     *
+     * translates RNA into protein sequence using Codon map helper function
+     * @param rna Charqueue with rna sequence
+     * @return protein sequence after translated
+     * */
+
     public CharQueue translateRNA(CharQueue rna) {
-        //initiates necessary variables for protein transcription
         CharQueue protein = new CharQueue();
         int codonLength = 0;
         char[] codon = new char[CODON_LENGTH];

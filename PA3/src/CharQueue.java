@@ -23,10 +23,20 @@ public class CharQueue {
 
     private static final int DEFAULT_CAPACITY = 5;
 
+
+
+    /**
+     * constructor for charqueue with default capacity
+     *
+     */
     public CharQueue() {
         this(DEFAULT_CAPACITY);
     }
 
+    /**
+     * constructor for charqueue with default capacity
+     *
+     */
     public CharQueue(int capacity) {
 
         if (capacity < 1) {
@@ -41,16 +51,30 @@ public class CharQueue {
 
     }
 
+    /**
+     * checks if charqueue is empty
+     * @return boolean value based on size
+     *
+     */
+
     public boolean isEmpty() {
         // returns boolean value based on size
         return size == 0;
     }
 
+    /**
+     * @return size of charqueue
+     *
+     */
     public int size() {
         // returns size
         return size;
     }
 
+    /**
+     * clears charqueue values
+     *
+     */
     public void clear() {
         // clears the Queue by making front rear and size 0
         front = 0;
@@ -58,6 +82,10 @@ public class CharQueue {
         size = 0;
     }
 
+    /**
+     * enqueues a new character, doubles the capacity of circular array if size reaches length
+     * @param elem character element that is meant to be enqueued
+     */
     public void enqueue(char elem) {
         // enqueues a new character, doubles the capacity of circular array if size reaches length
         if (size == length) {
@@ -79,6 +107,10 @@ public class CharQueue {
     }
 
 
+    /**
+     * enqueues a new character, doubles the capacity of circular array if size reaches length
+     *
+     */
     public char peek() {
         // returns front of array
         if (isEmpty()) {
@@ -88,6 +120,11 @@ public class CharQueue {
 
     }
 
+
+    /**
+     * dequeues a character
+     * returns element that is dequeued
+     */
     public char dequeue() {
         // removes element from the front and returns it
         if (isEmpty()) {
