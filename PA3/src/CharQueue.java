@@ -116,6 +116,7 @@ public class CharQueue {
      * enqueues a new character, doubles the capacity of circular array if size reaches length
      *
      * @throws NoSuchElementException if charqueue is empty
+     * @return first character in array
      *
      */
     public char peek() {
@@ -132,6 +133,7 @@ public class CharQueue {
      * dequeues a character
      * returns element that is dequeued
      * @throws NoSuchElementException if charqueue is empty
+     * @return dequeued element
      */
     public char dequeue() {
         // removes element from the front and returns it
